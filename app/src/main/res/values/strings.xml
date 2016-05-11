@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">WikiImageSearch</string>
+    <string name="query_text">Enter query text here</string>
+</resources>
