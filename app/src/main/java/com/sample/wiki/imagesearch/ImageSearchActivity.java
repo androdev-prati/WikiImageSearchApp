@@ -64,7 +64,7 @@ public class ImageSearchActivity extends AppCompatActivity implements SearchView
         mSearchView = (SearchView) findViewById(R.id.search_view);
         mSearchResultList = (ListView) findViewById(R.id.result_list);
         mSearchAdapter = new ImageSearchAdapter(this, R.layout.search_result_item,
-                null, CURSON_COLUMNS, null, 0, mVolleyRequestQueue);
+                null, CURSON_COLUMNS, null, 0);
         mSearchView.setOnQueryTextListener(this);
         mSearchView.setIconified(false);
         mSearchView.setIconifiedByDefault(false);
