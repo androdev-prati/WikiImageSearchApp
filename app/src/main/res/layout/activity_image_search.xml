@@ -7,18 +7,28 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.assignment.wiki.imagesearch.ImageSearchActivity">
+    tools:context="com.sample.wiki.imagesearch.ImageSearchActivity">
 
     <android.support.v7.widget.SearchView
         android:id="@+id/search_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:queryHint="@string/query_text"
-        android:padding="5dp"/>
+        android:background="@drawable/edge_bg"
+        />
     <ListView
         android:id="@+id/result_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/search_view"/>
+        android:layout_below="@+id/search_view"
+        />
+    <TextView android:id="@+id/empty_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/search_view"
+        android:text="@string/empty_query"
+        android:gravity="center_horizontal"
+        android:paddingTop="50dp"
+        />
 
 </RelativeLayout>

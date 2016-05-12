@@ -1,4 +1,4 @@
-package com.assignment.wiki.imagesearch;
+package com.sample.wiki.imagesearch;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -11,16 +11,16 @@ import android.widget.TextView;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.ImageRequest;
 
-/**
- * Created by Pratibha on 5/11/2016.
+/**Adapter that binds the cursor contents to the views in the list.
+ * @author Pratibha
  */
 @SuppressWarnings("deprecation")
 public class ImageSearchAdapter extends SimpleCursorAdapter {
 
     RequestQueue mVolleyRequestQueue;
+
     public ImageSearchAdapter(Context context, int layout, Cursor c,
                               String[] from, int[] to, int flags, RequestQueue mVolleyRequestQueue) {
         super(context, layout, c, from, to, flags);
@@ -35,6 +35,13 @@ public class ImageSearchAdapter extends SimpleCursorAdapter {
         ((TextView) view.findViewById(R.id.search_title)).setText(cursor.getString(2));
     }
 
+    /**
+     * Creates a Volley ImageRequest to download image and load the thumbnail.
+     * @param icon View which needs to be updated with the image
+     * @param tag Tag to avoid reused views getting loaded with older thumbnails
+     *            due to request time gap.
+     * @param url Image url to load same.
+     */
     private void loadImage(final ImageView icon, final String tag, String url) {
         ImageRequest imageRequest = new ImageRequest(url,
                 new Response.Listener<Bitmap>() {

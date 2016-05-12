@@ -5,8 +5,8 @@
     android:padding="2dp">
     <ImageView
         android:id="@+id/search_result_icon"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="@dimen/thumb_size"
+        android:layout_height="@dimen/thumb_size"
         android:src="@mipmap/ic_launcher"/>
     <TextView
         android:id="@+id/search_title"

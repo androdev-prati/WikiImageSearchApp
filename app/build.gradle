@@ -5,7 +5,7 @@ android {
     buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "com.assignment.wiki.imagesearch"
+        applicationId "com.sample.wiki.imagesearch"
         minSdkVersion 16
         targetSdkVersion 23
         versionCode 1

@@ -1,7 +1,8 @@
-package com.assignment.wiki.imagesearch;
+package com.sample.wiki.imagesearch;
 
-/**
- * Created by Pratibha on 5/11/2016.
+/** Data model that holds the search result's each item.
+ *
+ * @author Pratibha
  */
 public class SearchItem {
     private String pageID;
