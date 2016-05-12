@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ImageSearchActivity"
-        android:label="@string/app_name">
+        android:label="@string/search_image">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
