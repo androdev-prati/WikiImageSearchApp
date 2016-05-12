@@ -87,7 +87,7 @@ public class ImageSearchActivity extends AppCompatActivity implements SearchView
         } else {
             mSearchAdapter.changeCursor(null);
             mSearchAdapter.notifyDataSetChanged();
-            mListEmptyView.setText(R.string.empty_query);
+            mListEmptyView.setText("");
         }
         return true;
     }
@@ -105,7 +105,7 @@ public class ImageSearchActivity extends AppCompatActivity implements SearchView
         } else {
             mSearchAdapter.changeCursor(null);
             mSearchAdapter.notifyDataSetChanged();
-            mListEmptyView.setText(R.string.empty_query);
+            mListEmptyView.setText("");
         }
         return true;
     }
@@ -113,7 +113,7 @@ public class ImageSearchActivity extends AppCompatActivity implements SearchView
     @Override
     public boolean onClose() {
         mSearchResultList.removeAllViews();
-        mListEmptyView.setText(R.string.query_text);
+        mListEmptyView.setText("");
         return true;
     }
 
