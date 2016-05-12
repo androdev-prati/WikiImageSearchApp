@@ -1,12 +1,16 @@
 package com.sample.wiki.imagesearch;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -31,7 +35,7 @@ import java.util.Iterator;
  * @author Pratibha
  */
 public class ImageSearchActivity extends AppCompatActivity implements SearchView.OnQueryTextListener,
-        SearchView.OnCloseListener {
+        SearchView.OnCloseListener, AdapterView.OnItemClickListener {
 
     private static final int MIN_SEARCH_CHAR = 1;
     private static final String TAG_QUERY = "query";
@@ -41,8 +45,8 @@ public class ImageSearchActivity extends AppCompatActivity implements SearchView
     private static final String TAG_SRC = "source";
 
     private static final String BASE_URL = "https://en.wikipedia.org/w/api.php?%20" +
-            "action=query&prop=pageimages&format=json&piprop=thumbnail&pithumbsize=50" +
-            "&%20pilimit=50&generator=prefixsearch&gpssearch=";
+            "action=query&prop=pageimages&format=json&piprop=thumbnail&pithumbsize=300" +
+            "&%20pilimit=50&generator=prefixsearch&gpslimit=50&gpssearch=";
     private static final String[] CURSON_COLUMNS = new String[]{"_id", "icon_url", "title"};
 
     private SearchView mSearchView;
@@ -67,6 +71,7 @@ public class ImageSearchActivity extends AppCompatActivity implements SearchView
         mSearchResultList.setAdapter(mSearchAdapter);
         mListEmptyView = (TextView) findViewById(R.id.empty_view);
         mSearchResultList.setEmptyView(mListEmptyView);
+        mSearchResultList.setOnItemClickListener(this);
     }
 
     /**
@@ -202,5 +207,20 @@ public class ImageSearchActivity extends AppCompatActivity implements SearchView
             cursor.addRow(rowItem);
         }
         return cursor;
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        if (view != null) {
+            //String title = ((TextView) view.findViewById(R.id.search_title)).getText().toString();
+            Intent intent = new Intent(ImageSearchActivity.this, ResultPageActivity.class);
+            if (view.getTag() != null && !view.getTag().toString().isEmpty()) {
+                intent.putExtra(TAG_TITLE, view.getTag().toString());
+                startActivity(intent);
+            } else {
+                Toast.makeText(ImageSearchActivity.this, getResources().getString(R.string.no_image),
+                        Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }

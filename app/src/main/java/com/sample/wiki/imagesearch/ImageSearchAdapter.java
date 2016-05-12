@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,8 +33,9 @@ public class ImageSearchAdapter extends SimpleCursorAdapter {
     public void bindView(View view, Context context, Cursor cursor) {
         ImageView icon = (ImageView) view.findViewById(R.id.search_result_icon);
         icon.setTag(cursor.getString(2));
-        loadImage(icon, cursor.getString(2), cursor.getString(1));
+        loadImage(icon, cursor.getString(2), cursor.getString(1), context);
         ((TextView) view.findViewById(R.id.search_title)).setText(cursor.getString(2));
+        view.setTag(cursor.getString(1));
     }
 
     /**
@@ -41,19 +44,25 @@ public class ImageSearchAdapter extends SimpleCursorAdapter {
      * @param tag Tag to avoid reused views getting loaded with older thumbnails
      *            due to request time gap.
      * @param url Image url to load same.
+     * @param context
      */
-    private void loadImage(final ImageView icon, final String tag, String url) {
+    private void loadImage(final ImageView icon, final String tag, final String url, final Context context) {
         ImageRequest imageRequest = new ImageRequest(url,
                 new Response.Listener<Bitmap>() {
                     @Override
                     public void onResponse(Bitmap bitmap) {
-                        if (icon.getTag().toString().equals(tag))
+                        if (icon.getTag().toString().equals(tag)) {
+                            Animation anim = AnimationUtils.loadAnimation(context, R.anim.scale_anim);
                             icon.setImageBitmap(bitmap);
+                            icon.startAnimation(anim);
+                        }
                     }
                 }, 0, 0, null,
                 new Response.ErrorListener() {
                     public void onErrorResponse(VolleyError error) {
+                        Animation anim = AnimationUtils.loadAnimation(context, R.anim.scale_anim);
                         icon.setImageResource(R.mipmap.ic_launcher);
+                        icon.startAnimation(anim);
                     }
                 });
         mVolleyRequestQueue.add(imageRequest);
