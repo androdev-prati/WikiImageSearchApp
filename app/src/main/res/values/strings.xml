@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WikiImageSearch</string>
+    <string name="app_name">Wiki Image Search</string>
     <string name="query_text">Enter query text here</string>
     <string name="empty_query">Enter query to see results.</string>
     <string name="empty_result">No result found for the query</string>
