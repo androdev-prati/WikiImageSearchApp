@@ -14,6 +14,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
+import com.squareup.picasso.Picasso;
 
 /**Adapter that binds the cursor contents to the views in the list.
  * @author Pratibha
